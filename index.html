@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏洛特男傳經紀公司 · Charlotte Men's Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500&family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rose:#C9956C;
+  --rose-l:rgba(201,149,108,0.2);
+  --rose-d:rgba(201,149,108,0.08);
+  --rose-bright:#E8A87C;
+  --blush:#F2D4C8;
+  --blush-l:rgba(242,212,200,0.15);
+  --bg:#FDFAF8;
+  --bg-dark:#1A1218;
+  --pearl:#FFFFFF;
+  --dark:#2C1A14;
+  --dark-d:rgba(44,26,20,0.65);
+  --dark-dd:rgba(44,26,20,0.35);
+  --pink-soft:#F8EDE8;
+  --section-alt:#FEF7F4;
+}
+html,body{height:100%;background:var(--bg);color:var(--dark);font-family:'Noto Serif TC',serif;overflow-x:hidden}
+
+/* grain overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:997;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");opacity:.4}
+
+/* ── HEADER ── */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:500;padding:.9rem 1.4rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border .4s,box-shadow .4s}
+#hdr.scrolled{background:rgba(253,250,248,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--rose-l);box-shadow:0 2px 20px rgba(201,149,108,.08)}
+.brand{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.2em;color:var(--rose);line-height:1.3;cursor:pointer}
+.brand small{display:block;font-family:'Noto Serif TC',serif;font-size:.5rem;letter-spacing:.3em;color:var(--dark-dd);margin-top:2px}
+.hbg{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hbg span{width:24px;height:1px;background:var(--rose);transition:all .3s;display:block}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ── MOBILE MENU ── */
+#mmenu{position:fixed;inset:0;background:rgba(253,250,248,.98);z-index:490;display:none;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+#mmenu.open{display:flex;animation:fadeIn .3s ease}
+#mmenu a{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.25em;color:var(--dark-d);text-decoration:none;transition:color .3s;padding:.4rem 0;cursor:pointer}
+#mmenu a:hover,#mmenu a.active{color:var(--rose)}
+#mmenu .m-line{width:40px;height:1px;background:var(--rose-l);margin:.3rem 0}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-top:58px}
+.page.active{display:block}
+
+/* ── HERO ── */
+#p-home .hero{position:relative;height:calc(100vh - 58px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;
+  background:linear-gradient(135deg,#F8EDE8 0%,#FDEBD9 30%,#F2D4C8 60%,#E8C4B0 100%);
+}
+/* floating petals decoration */
+.hero-deco{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.petal{position:absolute;border-radius:50% 0 50% 0;opacity:.15;animation:petalFloat linear infinite}
+.petal:nth-child(1){width:80px;height:80px;background:var(--rose);top:15%;left:8%;animation-duration:12s;animation-delay:0s}
+.petal:nth-child(2){width:50px;height:50px;background:var(--rose-bright);top:60%;left:85%;animation-duration:15s;animation-delay:-3s}
+.petal:nth-child(3){width:100px;height:100px;background:var(--blush);top:80%;left:15%;animation-duration:18s;animation-delay:-6s;opacity:.2}
+.petal:nth-child(4){width:40px;height:40px;background:var(--rose);top:25%;left:75%;animation-duration:10s;animation-delay:-2s}
+.petal:nth-child(5){width:65px;height:65px;background:var(--rose-bright);top:45%;left:5%;animation-duration:14s;animation-delay:-8s;opacity:.12}
+@keyframes petalFloat{
+  0%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-20px) rotate(45deg)}
+  100%{transform:translateY(0) rotate(90deg)}
+}
+.hero-c{position:relative;z-index:2;text-align:center;padding:0 1.8rem}
+.hero-eye{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.55em;color:var(--rose);margin-bottom:1.4rem;animation:fadeUp .9s .2s both;opacity:.85}
+.hero-t{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,9vw,4.5rem);font-weight:400;line-height:1.1;color:var(--dark);margin-bottom:.8rem;animation:fadeUp .9s .5s both}
+.hero-t em{color:var(--rose);font-style:italic;display:block;font-size:.75em}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,3vw,1.3rem);font-weight:300;font-style:italic;color:var(--dark-d);margin-bottom:2.5rem;animation:fadeUp .9s .7s both;letter-spacing:.05em}
+.hero-s{font-size:.78rem;letter-spacing:.15em;color:var(--dark-dd);margin-bottom:2.8rem;animation:fadeUp .9s .85s both}
+.hero-btn{display:inline-block;padding:.85rem 2.4rem;background:var(--rose);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.28em;color:#fff;text-decoration:none;transition:all .4s;animation:fadeUp .9s 1.1s both;cursor:pointer;border:none;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(201,149,108,.35)}
+.hero-btn::before{content:'';position:absolute;inset:0;background:var(--rose-bright);transform:translateX(-101%);transition:transform .4s ease;z-index:0}
+.hero-btn span{position:relative;z-index:1}
+.hero-btn:hover::before{transform:translateX(0)}
+.hero-btn:hover{box-shadow:0 6px 28px rgba(201,149,108,.5)}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scroll-ind span{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.4em;color:var(--dark-dd)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--rose),transparent);animation:spulse 2s ease-in-out infinite}
+@keyframes spulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── QUICK NAV ── */
+.qnav{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.qcard{border:1px solid var(--rose-l);padding:1.8rem 1rem 1.5rem;text-align:center;background:var(--pearl);cursor:pointer;transition:all .4s;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(201,149,108,.06)}
+.qcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--rose),var(--rose-bright));transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.qcard:hover{background:var(--pink-soft);transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,149,108,.15)}
+.qcard:hover::after{transform:scaleX(1)}
+.qcard-icon{width:48px;height:48px;margin:0 auto 1rem;display:block}
+.qcard-t{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--rose);margin-bottom:.3rem;font-weight:400}
+.qcard-d{font-size:.68rem;color:var(--dark-dd);letter-spacing:.08em}
+
+/* ── SECTION ── */
+.sec{padding:4.5rem 1.6rem}
+.sec-alt{background:var(--section-alt)}
+.sec-eye{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.5em;color:var(--rose);margin-bottom:.7rem;opacity:.8}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,6vw,2.8rem);font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:1.2rem}
+.sec-h em{color:var(--rose);font-style:italic}
+.gdiv{width:50px;height:2px;background:linear-gradient(to right,var(--rose),var(--rose-bright),transparent);margin:1.2rem auto;border-radius:1px}
+.gdiv-l{margin:1.2rem 0}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* ── ABOUT ── */
+.about-body{font-size:.88rem;line-height:1.85;color:var(--dark-d);letter-spacing:.04em;font-weight:400}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;border-top:1px solid var(--rose-l);padding-top:2.5rem}
+.stat-n{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:400;color:var(--rose);line-height:1}
+.stat-l{font-size:.62rem;letter-spacing:.18em;color:var(--dark-dd);margin-top:.4rem}
+.feat-list{display:flex;flex-direction:column;gap:.9rem}
+.feat{display:flex;gap:1rem;align-items:flex-start;border:1px solid var(--rose-l);padding:1.2rem 1rem;background:var(--pearl);transition:all .3s;box-shadow:0 2px 8px rgba(201,149,108,.04)}
+.feat:hover{border-color:rgba(201,149,108,.4);box-shadow:0 4px 16px rgba(201,149,108,.1);transform:translateX(4px)}
+.feat-icon{width:34px;height:34px;flex-shrink:0}
+.feat-t{font-family:'Playfair Display',serif;font-size:1rem;color:var(--rose);margin-bottom:.3rem;font-weight:400}
+.feat-d{font-size:.79rem;color:var(--dark-d);line-height:1.75;font-weight:400}
+
+/* ── TERMS ── */
+.terms-block{margin-bottom:2rem;border-left:2px solid var(--rose-l);padding-left:1.2rem}
+.terms-block h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose);margin-bottom:.8rem;font-weight:400}
+.terms-block p,.terms-block li{font-size:.82rem;color:var(--dark-d);line-height:1.8;letter-spacing:.03em;font-weight:400}
+.terms-block ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.terms-block ul li::before{content:'♦ ';color:var(--rose);font-size:.55rem;margin-right:.4rem;opacity:.7}
+.terms-note{border:1px solid var(--rose-l);padding:1.2rem 1.4rem;background:var(--pink-soft);font-size:.74rem;color:var(--dark-d);line-height:1.9;margin-top:2rem;text-align:center;border-radius:2px}
+
+/* ── PRICING ── */
+.price-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rose-l);border-radius:2px;box-shadow:0 4px 20px rgba(201,149,108,.06)}
+.price-table{width:100%;border-collapse:collapse;min-width:300px}
+.price-table thead tr{border-bottom:2px solid var(--rose)}
+.price-table th{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;color:var(--rose);padding:.9rem 3rem;text-align:center;font-weight:600;white-space:nowrap;background:var(--pink-soft)}
+.price-table td{padding:.9rem 3rem;color:var(--dark-d);border-bottom:1px solid var(--rose-l);font-size:.8rem;font-weight:300;line-height:1.4;vertical-align:middle;white-space:nowrap;text-align:center}.price-table tr:hover td{background:var(--pink-soft);color:var(--dark)}
+.pkg{color:var(--dark)!important;font-weight:500!important;font-size:.85rem!important;white-space:nowrap!important;font-family:'Playfair Display',serif!important}
+.price-val{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--rose);white-space:nowrap;font-weight:400}
+.star-on{color:var(--rose);font-size:.7rem;letter-spacing:-.5px}
+.star-off{color:rgba(44,26,20,.15);font-size:.7rem;letter-spacing:-.5px}
+.star-sep{color:var(--dark-dd);font-size:.7rem;margin:0 1px}
+.price-badge{display:inline-block;font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.1em;padding:.12rem .38rem;border:1px solid var(--rose);color:var(--rose);vertical-align:middle;margin-left:.3rem;border-radius:1px}
+.price-note{font-size:.72rem;color:var(--dark-dd);text-align:center;margin-top:1.6rem;line-height:1.8;letter-spacing:.04em}
+.vip-row td{background:var(--pink-soft)!important}
+.glow-line{height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent);opacity:.4;margin:2rem 0}
+
+/* ── RECRUIT ── */
+.recruit-hero{background:linear-gradient(135deg,#F8EDE8 0%,#FDEBD9 50%,#F2D4C8 100%);padding:3rem 1.6rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.recruit-hero::before{content:'✦';position:absolute;top:1.5rem;left:1.5rem;font-size:1rem;color:var(--rose);opacity:.3}
+.recruit-hero::after{content:'✦';position:absolute;top:1.5rem;right:1.5rem;font-size:1rem;color:var(--rose);opacity:.3}
+.recruit-hero h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,7vw,3rem);font-weight:400;color:var(--dark);line-height:1.15;margin-bottom:.8rem;animation:fadeUp .8s .3s both}
+.recruit-hero h2 em{color:var(--rose);font-style:italic}
+.recruit-hero p{font-size:.84rem;color:var(--dark-d);line-height:1.85;letter-spacing:.04em;animation:fadeUp .8s .6s both;font-weight:400}
+.salary-banner{text-align:center;padding:2rem 1rem;border:1px solid var(--rose-l);margin:0 0 2rem;background:var(--pearl);box-shadow:0 4px 20px rgba(201,149,108,.08);position:relative;overflow:hidden}
+.salary-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--rose),var(--rose-bright),var(--blush),var(--rose))}
+.sb-l{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;color:var(--dark-dd);margin-bottom:.5rem}
+.sb-n{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:400;line-height:1;display:inline;color:var(--rose)}
+.sb-rise{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:300;margin-left:.3rem;display:inline;vertical-align:.1em;color:var(--rose)}
+.sb-s{font-size:.72rem;color:var(--dark-dd);margin-top:.5rem;letter-spacing:.1em}
+.sb-dept{font-size:.66rem;color:rgba(201,149,108,.7);margin-top:.35rem;letter-spacing:.08em}
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.benefit{border:1px solid var(--rose-l);padding:1.4rem 1rem;text-align:center;background:var(--pearl);transition:all .3s;box-shadow:0 2px 8px rgba(201,149,108,.04)}
+.benefit:hover{border-color:rgba(201,149,108,.5);box-shadow:0 6px 20px rgba(201,149,108,.12);transform:translateY(-2px)}
+.bi{width:42px;height:42px;margin:0 auto .75rem;display:block}
+.bt{font-family:'Playfair Display',serif;font-size:1rem;color:var(--rose);margin-bottom:.3rem;font-weight:400}
+.bd{font-size:.72rem;color:var(--dark-d);line-height:1.7;font-weight:400}
+.appeal-sec{background:linear-gradient(135deg,var(--pink-soft),#fff);border-left:3px solid var(--rose);padding:1.6rem 1.3rem;margin:0 0 2rem;border-radius:0 4px 4px 0}
+.appeal-sec p{font-size:.84rem;color:var(--dark-d);line-height:1.85;letter-spacing:.03em;font-weight:400}
+.cta-recruit{display:block;text-align:center;padding:1.1rem 2rem;background:var(--rose);color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.25em;cursor:pointer;text-decoration:none;transition:all .3s;margin-top:2rem;box-shadow:0 4px 16px rgba(201,149,108,.3);border:none}
+.cta-recruit:hover{background:var(--rose-bright);box-shadow:0 6px 24px rgba(201,149,108,.45)}
+.legal-box{border:1px solid var(--rose-l);padding:1.4rem 1.2rem;background:var(--pink-soft);margin-bottom:2rem;border-radius:2px}
+.legal-box h4{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:var(--rose);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.legal-box ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.legal-box li{font-size:.78rem;color:var(--dark-d);line-height:1.7;padding-left:1rem;position:relative}
+.legal-box li::before{content:'◆';position:absolute;left:0;color:var(--rose);font-size:.5rem;top:.2rem}
+
+/* ── CONTACT FOOTER ── */
+.cf{background:linear-gradient(to bottom,var(--pink-soft),var(--bg));border-top:1px solid var(--rose-l);padding:2.2rem 1.6rem;margin-top:1rem}
+.cf-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:var(--rose);text-align:center;margin-bottom:1.8rem;opacity:.85}
+.cf-cards{display:flex;flex-direction:column;gap:.8rem}
+.cf-card{border:1px solid var(--rose-l);padding:1rem 1.2rem;background:var(--pearl);display:flex;align-items:center;gap:1rem;transition:all .3s;height:70px;box-shadow:0 2px 8px rgba(201,149,108,.04)}
+.cf-card:hover{border-color:rgba(201,149,108,.5);box-shadow:0 4px 16px rgba(201,149,108,.1)}
+.cf-ico{width:38px;height:38px;flex-shrink:0}
+.cf-l{flex:1;min-width:0}
+.cf-type{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.28em;color:var(--rose);margin-bottom:.22rem;opacity:.75}
+.cf-id{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cf-cbtn{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.1em;padding:0;border:1px solid var(--rose);color:var(--rose);background:transparent;cursor:pointer;transition:all .3s;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:88px;height:34px;text-align:center}
+.cf-cbtn:hover{background:var(--rose);color:#fff}
+.copy-msg{font-size:.64rem;color:var(--rose);height:1.2em;margin-top:.3rem;opacity:0;transition:opacity .3s}
+.copy-msg.show{opacity:1}
+.footer-copy{text-align:center;font-size:.64rem;color:var(--dark-dd);letter-spacing:.08em;line-height:2.1;margin-top:1.6rem;padding-top:1.5rem;border-top:1px solid var(--rose-l)}
+
+/* ── FLOAT BUTTONS ── */
+#float-btns{position:fixed;bottom:1.6rem;right:1.3rem;z-index:600;display:flex;flex-direction:column;gap:.6rem;align-items:center}
+.fb{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;border:none;transition:transform .3s,box-shadow .3s;animation:fbob 3s ease-in-out infinite;overflow:hidden;padding:0}
+.fb:nth-child(2){animation-delay:.4s}
+.fb:nth-child(3){animation-delay:.8s}
+.fb:hover{transform:scale(1.12)!important;animation:none}
+.fb-phone{background:rgba(201,149,108,.12);border:1.5px solid var(--rose);box-shadow:0 3px 14px rgba(201,149,108,.2)}
+.fb-line{background:#06C755;box-shadow:0 3px 14px rgba(6,199,85,.4)}
+.fb-wechat{background:#2DC100;box-shadow:0 3px 14px rgba(45,193,0,.4)}
+.fb svg{width:42px;height:42px}
+@keyframes fbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* ── BACK TO TOP ── */
+#back-top{position:fixed;bottom:1.6rem;left:1.3rem;z-index:600;width:50px;height:50px;border-radius:50%;background:rgba(253,250,248,.85);border:1.5px solid var(--rose);box-shadow:0 3px 14px rgba(201,149,108,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .35s,transform .35s;transform:translateY(8px);backdrop-filter:blur(6px)}
+#back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+#back-top:hover{background:var(--pink-soft)}
+
+/* toast */
+#float-toast{position:fixed;bottom:5.5rem;right:1.3rem;z-index:700;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.12em;color:var(--rose);background:rgba(253,250,248,.9);backdrop-filter:blur(8px);border:1px solid var(--rose-l);box-shadow:0 2px 16px rgba(201,149,108,.12);padding:.5rem 1rem;border-radius:2px;opacity:0;transition:opacity .35s;pointer-events:none}
+
+/* shimmer rose */
+@keyframes shimmer-rose{0%{background-position:-200% center}100%{background-position:200% center}}
+.shimmer{background:linear-gradient(90deg,var(--rose) 0%,#f0b896 40%,var(--rose) 60%,#b87a55 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer-rose 4s linear infinite}
+
+/* pricing CTA */
+.pricing-cta-wrap{display:flex;justify-content:center;margin-top:2rem}
+.cta-recruit-inline{display:inline-block;text-align:center;padding:1rem 2.5rem;background:var(--rose);color:#fff;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.25em;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(201,149,108,.25);border:none}
+.cta-recruit-inline:hover{background:var(--rose-bright);box-shadow:0 6px 24px rgba(201,149,108,.4)}
+
+@media(min-width:600px){
+  .sec{padding:5rem 2.5rem}
+  .benefit-grid{grid-template-columns:repeat(3,1fr)}
+  .cf-cards{display:grid;grid-template-columns:1fr 1fr 1fr}
+}
+#age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(253,250,248,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#age-gate-box {
+  text-align: center;
+  padding: 2.8rem 2rem;
+  border: 1px solid rgba(201,149,108,0.3);
+  max-width: 320px;
+  width: 90%;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(201,149,108,0.15);
+}
+#age-gate-box .ag-eye {
+  font-family: 'Cinzel', serif;
+  font-size: .5rem;
+  letter-spacing: .5em;
+  color: var(--rose);
+  margin-bottom: 1.4rem;
+  opacity: .8;
+}
+#age-gate-box .ag-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.4;
+  margin-bottom: .6rem;
+}
+#age-gate-box .ag-sub {
+  font-size: .75rem;
+  color: var(--dark-dd);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+#age-gate-box .ag-div {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,149,108,0.4), transparent);
+  margin-bottom: 2rem;
+}
+#age-gate-box .ag-btn-yes {
+  display: block;
+  width: 100%;
+  padding: .85rem;
+  background: var(--rose);
+  border: none;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: .65rem;
+  letter-spacing: .25em;
+  cursor: pointer;
+  margin-bottom: .8rem;
+  transition: background .3s;
+}
+#age-gate-box .ag-btn-yes:hover { background: var(--rose-bright); }
+#age-gate-box .ag-btn-no {
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  background: transparent;
+  border: 1px solid rgba(44,26,20,0.15);
+  color: var(--dark-dd);
+  font-family: 'Cinzel', serif;
+  font-size: .6rem;
+  letter-spacing: .2em;
+  cursor: pointer;
+  transition: all .3s;
+}
+#age-gate-box .ag-btn-no:hover {
+  border-color: rgba(44,26,20,0.3);
+  color: var(--dark-d);
+}
+#side-btn {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 600;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: var(--rose);
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: .2em;
+  padding: 1.2rem .6rem;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: -3px 0 16px rgba(201,149,108,.25);
+  transition: all .3s;
+  border-radius: 4px 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+#side-btn:hover {
+  background: var(--rose-bright);
+  padding-right: .9rem;
+  box-shadow: -4px 0 20px rgba(201,149,108,.4);
+}
+#side-btn .side-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+  <div id="age-gate">
+  <div id="age-gate-box">
+    <p class="ag-eye">CHARLOTTE MEN'S AGENCY</p>
+    <p class="ag-title">本站內容<br>僅供成年人瀏覽</p>
+    <p class="ag-sub">請確認您已年滿 18 歲<br>本站涉及成人娛樂內容</p>
+    <div class="ag-div"></div>
+    <button class="ag-btn-yes" onclick="ageConfirm()">已滿 18 歲，進入網站</button>
+    <button class="ag-btn-no" onclick="ageDeny()">未滿 18 歲，離開</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="brand" onclick="nav('home')">Charlotte<small>夏洛特男傳經紀公司</small></div>
+  <div class="hbg" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav id="mmenu">
+  <a onclick="nav('home')">首頁</a>
+  <div class="m-line"></div>
+  <a onclick="nav('about')">公司簡介</a>
+  <a onclick="nav('terms')">消費須知</a>
+  <a onclick="nav('pricing')">消費介紹</a>
+  <a onclick="nav('recruit')">招募職缺</a>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="p-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-deco">
+      <div class="petal"></div><div class="petal"></div>
+      <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    </div>
+    <div class="hero-c">
+      <p class="hero-eye">CHARLOTTE MEN'S AGENCY</p>
+      <h1 class="hero-t">夏洛特男傳<em>經紀公司</em></h1>
+      <p class="hero-tagline">為她而生的專屬尊寵體驗</p>
+      <p class="hero-s">精緻 · 品味 · 專為女性設計的頂級陪伴服務</p>
+      <a class="hero-btn" href="https://line.me/ti/p/~charlotte_kelsen" target="_blank" rel="noopener noreferrer"><span>即刻預約諮詢</span></a>
+    </div>
+    <div class="scroll-ind"><span>SCROLL</span><div class="scroll-line"></div></div>
+  </div>
+
+  <div class="sec" style="padding-top:3.5rem">
+    <p class="sec-eye reveal" style="text-align:center">EXPLORE</p>
+    <h2 class="sec-h reveal" style="text-align:center;margin-bottom:2rem">探索我們的服務</h2>
+    <div class="gdiv reveal" style="margin-bottom:2rem"></div>
+    <div class="qnav">
+      <!-- 公司簡介 -->
+      <div class="qcard reveal" onclick="nav('about')">
+        <svg class="qcard-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="16" r="8" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <path d="M8 42 Q8 30 24 30 Q40 30 40 42" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="24" cy="16" r="4" fill="#C9956C" opacity=".15"/>
+        </svg>
+        <div class="qcard-t">公司簡介</div>
+        <div class="qcard-d">關於夏洛特</div>
+      </div>
+      <!-- 消費介紹 -->
+      <div class="qcard reveal d1" onclick="nav('pricing')">
+        <svg class="qcard-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="14" width="32" height="22" rx="3" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <line x1="8" y1="22" x2="40" y2="22" stroke="#C9956C" stroke-width="1" opacity=".5"/>
+          <circle cx="24" cy="32" r="4" fill="none" stroke="#C9956C" stroke-width="1.2"/>
+          <line x1="24" y1="29" x2="24" y2="35" stroke="#C9956C" stroke-width="1" opacity=".7"/>
+          <line x1="21" y1="32" x2="27" y2="32" stroke="#C9956C" stroke-width="1" opacity=".7"/>
+        </svg>
+        <div class="qcard-t">消費介紹</div>
+        <div class="qcard-d">方案與費用</div>
+      </div>
+      <!-- 消費須知 -->
+      <div class="qcard reveal d2" onclick="nav('terms')">
+        <svg class="qcard-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 6 L36 6 L36 42 L12 42 Z" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <line x1="18" y1="16" x2="30" y2="16" stroke="#C9956C" stroke-width="1" opacity=".7"/>
+          <line x1="18" y1="22" x2="30" y2="22" stroke="#C9956C" stroke-width="1" opacity=".5"/>
+          <line x1="18" y1="28" x2="26" y2="28" stroke="#C9956C" stroke-width="1" opacity=".4"/>
+          <path d="M12 6 Q12 2 16 2 L16 6" fill="none" stroke="#C9956C" stroke-width="1" opacity=".5"/>
+        </svg>
+        <div class="qcard-t">消費須知</div>
+        <div class="qcard-d">服務條款</div>
+      </div>
+      <!-- 招募職缺 -->
+      <div class="qcard reveal d3" onclick="nav('recruit')">
+        <svg class="qcard-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- heart -->
+          <path d="M24 38 C24 38 8 28 8 18 C8 13 12 10 16 10 C19 10 22 12 24 15 C26 12 29 10 32 10 C36 10 40 13 40 18 C40 28 24 38 24 38 Z" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M24 38 C24 38 8 28 8 18 C8 13 12 10 16 10 C19 10 22 12 24 15 C26 12 29 10 32 10 C36 10 40 13 40 18 C40 28 24 38 24 38 Z" fill="#C9956C" opacity=".08"/>
+        </svg>
+        <div class="qcard-t">招募職缺</div>
+        <div class="qcard-d">加入我們</div>
+      </div>
+    </div>
+  </div>
+  <div id="cf-home"></div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="page" id="p-about">
+  <div class="sec" style="text-align:center">
+    <p class="sec-eye reveal">ABOUT US</p>
+    <h2 class="sec-h reveal">專業深度<br><em>直擊妳的需求</em></h2>
+    <div class="gdiv reveal"></div>
+    <p class="about-body reveal d1">
+      我們始終秉持經營初心，以女性視角出發，將品味與細膩注入服務核心。<br>
+      嚴選旗下每一位公關，不僅提供專屬女性的尊寵體驗，更能精準洞察您的每一項需求。<br>
+      從商務餐敘到私人聚會，透過嚴格培訓的紳士禮儀、談吐風度與形象管理，<br>
+      我們致力於在各種情境下提供最契合的陪伴，讓每一次相遇，都成為值得珍藏的美好回憶。<br>
+
+    </p>
+    <div class="stats reveal d2">
+      <div><div class="stat-n shimmer">10<span style="font-size:1.1rem">+</span></div><div class="stat-l">年深耕台中</div></div>
+      <div><div class="stat-n shimmer">300<span style="font-size:1.1rem">+</span></div><div class="stat-l">尊貴女性會員</div></div>
+      <div><div class="stat-n shimmer">24<span style="font-size:1.1rem">H</span></div><div class="stat-l">全天候服務</div></div>
+    </div>
+  </div>
+
+  <div class="sec sec-alt" style="padding-top:3rem">
+    <p class="sec-eye reveal">OUR STRENGTHS</p>
+    <h2 class="sec-h reveal" style="margin-bottom:1.6rem">核心競爭優勢</h2>
+    <div class="feat-list">
+      <div class="feat reveal">
+        <svg class="feat-icon" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="10" r="6" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <path d="M5 30 Q5 22 17 22 Q29 22 29 30" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linecap="round"/>
+          <polyline points="13,10 16,13 21,8" stroke="#C9956C" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><div class="feat-t">嚴選紳士培訓</div><div class="feat-d">每位公關皆通過儀態、談吐、形象等多項培訓，確保帶給您最高品質的陪伴體驗。</div></div>
+      </div>
+      <div class="feat reveal d1">
+        <svg class="feat-icon" viewBox="0 0 34 34" fill="none">
+          <path d="M17 3 L28 8 L28 18 Q28 26 17 30 Q6 26 6 18 L6 8 Z" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M17 5 L26 9 L26 18 Q26 25 17 28 Q8 25 8 18 L8 9 Z" fill="#C9956C" opacity=".06"/>
+          <polyline points="11,17 15,21 23,13" stroke="#C9956C" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div><div class="feat-t">安全私密保障</div><div class="feat-d">全程保密機制，客戶資訊絕不外洩。安全舒適的消費環境，讓您放心享受每一刻。</div></div>
+      </div>
+      <div class="feat reveal d2">
+        <svg class="feat-icon" viewBox="0 0 34 34" fill="none">
+          <path d="M17 4 C17 4 6 10 6 18 C6 24 11 29 17 30 C23 29 28 24 28 18 C28 10 17 4 17 4 Z" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <path d="M12 18 Q15 22 17 22 Q19 22 22 18" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="13" cy="15" r="1.2" fill="#C9956C"/>
+          <circle cx="21" cy="15" r="1.2" fill="#C9956C"/>
+        </svg>
+        <div><div class="feat-t">客製化配對服務</div><div class="feat-d">深入了解您的喜好與需求，為您精心配對最契合的公關，打造專屬於您的美好體驗。</div></div>
+      </div>
+      <div class="feat reveal d3">
+        <svg class="feat-icon" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="17" r="13" fill="none" stroke="#C9956C" stroke-width="1.3" opacity=".4"/>
+          <circle cx="17" cy="17" r="8" fill="none" stroke="#C9956C" stroke-width="1.3" opacity=".6"/>
+          <circle cx="17" cy="17" r="3" fill="#C9956C" opacity=".5"/>
+          <line x1="17" y1="4" x2="17" y2="8" stroke="#C9956C" stroke-width="1.2"/>
+          <line x1="17" y1="26" x2="17" y2="30" stroke="#C9956C" stroke-width="1.2"/>
+          <line x1="4" y1="17" x2="8" y2="17" stroke="#C9956C" stroke-width="1.2"/>
+          <line x1="26" y1="17" x2="30" y2="17" stroke="#C9956C" stroke-width="1.2"/>
+        </svg>
+        <div><div class="feat-t">24H 全天候服務</div><div class="feat-d">隨時隨地，專屬顧問為您待命。無論何時有需求，我們都在您身邊。</div></div>
+      </div>
+    </div>
+  </div>
+  <div id="cf-about"></div>
+</div>
+
+<!-- ══ TERMS ══ -->
+<div class="page" id="p-terms">
+  <div class="sec" style="text-align:center">
+    <p class="sec-eye reveal">TERMS OF SERVICE</p>
+    <h2 class="sec-h reveal">消費須知</h2>
+    <div class="gdiv reveal"></div>
+    <p class="reveal d1" style="font-size:.82rem;color:var(--dark-d);line-height:1.85;letter-spacing:.04em">請於消費前詳閱以下條款，以確保雙方權益與美好體驗。</p>
+  </div>
+  <div class="sec sec-alt" style="padding-top:0">
+    <div class="terms-block reveal">
+      <h3>💳 金流規範</h3>
+      <ul>
+        <li>費用採 <strong style="color:var(--gold)">預付制</strong>，服務前需全額收齊，方可安排服務。</li>
+        <li>續時請於原服務結束前 <strong style="color:var(--gold)">30 分鐘</strong> 告知，並預收續時費用。</li>
+        <li>費用經確認恕不退款；如有特殊狀況雙方協議處理。</li>
+        <li>服務期間有任何問題，請聯繫本公司經紀。</li>
+      </ul>
+    </div>
+        <div class="terms-block reveal d1">
+      <h3>📍 服務地點</h3>
+      <ul>
+        <li><strong>主要 KTV：</strong>台中好樂迪、錢櫃、銀櫃、超巨、超級巨星、星樂匯、享溫馨、V-MIX、凱悅、故鄉、阿拉丁及各大連鎖 KTV。</li>
+        <li><strong>招待所與酒店：</strong>台中各大私密招待所、頂級商務酒店皆可對接安排。</li>
+        <li><strong>車資規範：</strong>服務範圍以台中市中心（西屯、北屯、南屯、北區、西區、南區、中區）為主。</li>
+        <li>上述區域以外之服務地點 <strong style="color:var(--gold)">需貼補車資（採實報實銷）</strong>，且具備相關節數保障規範，詳情請洽專屬經紀。</li>
+      </ul>
+    </div>
+    <div class="terms-block reveal d1">
+      <h3>✅ 服務範圍</h3>
+      <ul>
+        <li>基本服務內容：聊天互動、桌遊娛樂、歡唱 KTV。</li>
+        <li>服務均在合法範圍內進行，嚴禁任何形式的違法行為。</li>
+        <li>服務場所內嚴格禁止攜帶或使用任何違禁品及管制藥物。</li>
+        <li>額外服務需與經紀確認，不得擅自要求超出範圍之服務。</li>
+      </ul>
+    </div>
+    <div class="terms-block reveal d2">
+      <h3>🍷 理性飲酒聲明</h3>
+      <p>本公司鼓勵賓客理性飲酒，切勿過量。若賓客出現明顯醉酒或失控狀態，本公司有權中止服務並安排專人協助。飲酒後請勿自行駕車，善加利用代駕或計程車服務，確保人身安全。</p>
+    </div>
+    <div class="terms-block reveal d3">
+      <h3>🛡 公關隱私保護</h3>
+      <ul>
+        <li>禁止對公關進行任何形式的言語侮辱、騷擾或身體侵害。</li>
+        <li>禁止在未經同意的情況下拍攝、錄影或錄音公關人員。</li>
+        <li>禁止詢問、索取公關人員之私人聯絡方式或個人資料。</li>
+        <li>違者本公司將立即中止服務，並保留法律追訴之權利。</li>
+      </ul>
+    </div>
+    <div class="terms-block reveal">
+      <h3>👜 個人財物提醒</h3>
+      <ul>
+        <li>妥善保管個人貴重物品，包含現金、手機、名錶等。</li>
+        <li>本公司對消費場所內之個人財物遺失恕不負責。</li>
+      </ul>
+    </div>
+    <div class="terms-note reveal">
+      ※ 以上條款以雙方誠信為基礎，共同維護美好的消費體驗<br>
+      ※ 首次洽詢享免費一對一諮詢，所有資料嚴格保密，請安心聯繫
+    </div>
+  </div>
+  <div id="cf-terms"></div>
+</div>
+
+<!-- ══ PRICING ══ -->
+<div class="page" id="p-pricing">
+  <div class="sec" style="text-align:center">
+    <p class="sec-eye reveal">PRICING</p>
+    <h2 class="sec-h reveal">消費介紹</h2>
+    <div class="gdiv reveal"></div>
+    <p class="reveal d1" style="font-size:.82rem;color:var(--dark-d);line-height:1.85">依個人偏好選擇最適合您的服務方案，詳情歡迎洽詢專屬顧問</p>
+  </div>
+  <div class="sec sec-alt" style="padding-top:0">
+    <div class="price-wrap reveal">
+      <table class="price-table">
+  <thead>
+    <tr>
+      <th>方案</th>
+      <th>價格&nbsp;/&nbsp;時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="pkg">男傳</td>
+      <td><span class="price-val">$3,600</span><span style="font-size:.65rem;color:var(--dark-dd);margin-left:.3rem">/ 2H</span></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    <div class="glow-line"></div>
+    <div class="price-note reveal">
+      ※ 以上定價均為基本費用，實際費用依服務內容、場地另計<br>
+      ※ 台中市區消費時數2小時起，市區以外依經紀人評估為準<br>
+      ※ 安排台中市區以外地點需補貼車資(採實報實銷)<br>
+      ※ 如需安排特殊地點或公關條件，請聯繫專屬經紀人<br>
+      ※ 所有消費前請詳閱消費須知條款，謝謝您的配合
+    </div>
+    <div class="pricing-cta-wrap reveal">
+      <a class="cta-recruit-inline" href="https://line.me/ti/p/~charlotte_kelsen" target="_blank" rel="noopener noreferrer">立即聯繫顧問洽詢方案</a>
+    </div>
+  </div>
+  <div id="cf-pricing"></div>
+</div>
+
+<!-- ══ RECRUIT ══ -->
+<div class="page" id="p-recruit">
+  <div class="recruit-hero sec">
+    <p class="sec-eye" style="animation:fadeUp .8s .1s both;text-align:center">JOIN US</p>
+    <h2 style="animation:fadeUp .8s .3s both">展現魅力<br><em>成為她心中的理想型</em></h2>
+    <div class="gdiv" style="animation:fadeUp .8s .5s both"></div>
+    <p>不論你正在尋找額外收入、追求更精彩的生活，<br>還是想拓展人際圈與自我價值——<br>夏洛特，讓你的魅力成為最強的資產。</p>
+  </div>
+  <div class="sec" style="padding-top:2rem">
+
+    <!-- 時薪方框 -->
+<div class="salary-banner reveal">
+  <div class="sb-l">基本時薪</div>
+  <div style="margin:.4rem 0 .5rem">
+    <span class="sb-n shimmer">$1,100</span><span class="sb-rise shimmer">起</span>
+  </div>
+  <div class="sb-s">可試做 · 不綁約 · 彈性排班 · 專車接送</div>
+  <div class="sb-dept">（現場部門）</div>
+</div>
+
+<!-- 法律警示（移到方框下面）-->
+<div class="legal-box reveal">
+  <h4>⚠️ 法律聲明與求職者保障</h4>
+  <ul>
+    <li><strong style="color:var(--rose)">嚴禁未成年：</strong>應徵者須年滿 18 歲，面試時請務必攜帶身分證件以供核對，本公司嚴格遵守《兒童及少年福利與權益保障法》。</li>
+    <li><strong style="color:var(--rose)">合法經營：</strong>我們提供專業的經紀制度與人身安全保障，嚴禁任何違法違規行為。</li>
+    <li><strong style="color:var(--rose)">誠信招募：</strong>無預收費用、不扣押證件，提供完整教育訓練，絕無任何強迫行為。</li>
+  </ul>
+</div>
+
+    <p class="sec-eye reveal">WHY US</p>
+    <h2 class="sec-h reveal" style="margin-bottom:1.6rem">加入我們的理由</h2>
+
+    <div class="benefit-grid">
+      <!-- 10年品牌 -->
+      <div class="benefit reveal">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="28" r="13" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <polygon points="22,22 23.5,26.5 28,26.5 24.5,29.5 26,34 22,31 18,34 19.5,29.5 16,26.5 20.5,26.5" fill="#C9956C" opacity=".6"/>
+          <path d="M16 16 L14 6 L22 10 L30 6 L28 16" fill="none" stroke="#C9956C" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+        <div class="bt">10年品牌</div>
+        <div class="bd">台中在地深耕，穩定有保障的工作環境</div>
+      </div>
+      <!-- 專業培訓 -->
+      <div class="benefit reveal d1">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <rect x="10" y="10" width="24" height="28" rx="2" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <line x1="16" y1="18" x2="28" y2="18" stroke="#C9956C" stroke-width="1" opacity=".7"/>
+          <line x1="16" y1="23" x2="28" y2="23" stroke="#C9956C" stroke-width="1" opacity=".5"/>
+          <line x1="16" y1="28" x2="24" y2="28" stroke="#C9956C" stroke-width="1" opacity=".4"/>
+        </svg>
+        <div class="bt">專業培訓</div>
+        <div class="bd">形象、禮儀、談吐全方位訓練，讓你快速上手</div>
+      </div>
+      <!-- 專車接送 -->
+      <div class="benefit reveal d2">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <rect x="4" y="22" width="36" height="12" rx="2" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <path d="M9 22 L14 12 L30 12 L35 22" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <circle cx="13" cy="34" r="4" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <circle cx="31" cy="34" r="4" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+        </svg>
+        <div class="bt">專車接送</div>
+        <div class="bd">安全出勤，全程公司安排交通，無需自行煩惱</div>
+      </div>
+      <!-- 員工聚餐 -->
+      <div class="benefit reveal d3">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <line x1="14" y1="6" x2="14" y2="18" stroke="#C9956C" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="10" y1="6" x2="10" y2="14" stroke="#C9956C" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="18" y1="6" x2="18" y2="14" stroke="#C9956C" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M10 14 Q14 18 18 14" fill="none" stroke="#C9956C" stroke-width="1.4"/>
+          <line x1="14" y1="18" x2="14" y2="38" stroke="#C9956C" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M26 6 Q26 14 30 18 L30 38" fill="none" stroke="#C9956C" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M26 6 L34 6 L34 18 Q30 18 26 18" fill="none" stroke="#C9956C" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+        <div class="bt">員工聚餐</div>
+        <div class="bd">定期舉辦聚餐活動，凝聚團隊向心力</div>
+      </div>
+      <!-- 員工旅遊 -->
+      <div class="benefit reveal" style="transition-delay:.12s">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <path d="M6 28 L18 24 L14 10 L19 10 L28 22 L36 20 Q40 19 40 22 Q40 25 36 24 L28 26 L24 38 L19 37 L20 26 Z" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <line x1="6" y1="34" x2="22" y2="34" stroke="#C9956C" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <div class="bt">員工旅遊</div>
+        <div class="bd">年度旅遊，放鬆身心享受精彩生活
+          <div style="font-size:.68rem;color:#C9956C;font-weight:600;margin-top:.3rem">🔥 2026/11 重慶 等你 +1！</div>
+        </div>
+      </div>
+      <!-- 安排住宿 -->
+      <div class="benefit reveal" style="transition-delay:.24s">
+        <svg class="bi" viewBox="0 0 44 44" fill="none">
+          <path d="M6 22 L22 8 L38 22" fill="none" stroke="#C9956C" stroke-width="1.3" stroke-linejoin="round"/>
+          <rect x="10" y="22" width="24" height="16" rx="1" fill="none" stroke="#C9956C" stroke-width="1.3"/>
+          <rect x="14" y="28" width="16" height="7" rx="1" fill="none" stroke="#C9956C" stroke-width="1" opacity=".7"/>
+          <rect x="15" y="26" width="5" height="3" rx="1" fill="#C9956C" opacity=".3"/>
+          <rect x="24" y="26" width="5" height="3" rx="1" fill="#C9956C" opacity=".3"/>
+        </svg>
+        <div class="bt">安排住宿</div>
+        <div class="bd">提供住宿安排，外縣市帥哥免煩惱，輕鬆來台中上班</div>
+      </div>
+    </div>
+
+    <div class="appeal-sec reveal">
+      <p>
+        💌 <strong style="color:var(--rose)">給正在考慮的你：</strong><br><br>
+        你是否有讓人眼前一亮的外表，卻不知道如何讓它發揮最大價值？<br><br>
+        在夏洛特，你的魅力就是你的競爭力。<br>
+        我們提供完整的培訓與支援體系，<strong style="color:var(--rose)">不綁約</strong>、可試做，<br>
+        讓你在安全、合法的環境中，開始屬於自己的精彩旅程。<br><br>
+        專業經紀一對一帶領，無經驗亦可輕鬆上手。
+      </p>
+    </div>
+
+    <a class="cta-recruit reveal" onclick="scrollToFooter('recruit')">💬 私訊了解詳情，從這裡開始</a>
+  </div>
+  <div id="cf-recruit"></div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="scrollBackTop()" title="回到頂部" aria-label="回到頂部">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9956C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<!-- FLOAT BUTTONS -->
+<div id="float-btns">
+  <a class="fb fb-phone" href="tel:+886986199030" title="直接撥打">
+    <svg viewBox="-3 -3 30 30" fill="none" stroke="#C9956C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:26px;height:26px">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/>
+    </svg>
+  </a>
+  <a class="fb fb-line" href="https://line.me/ti/p/~charlotte_kelsen" target="_blank" rel="noopener noreferrer" title="LINE 加好友">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:50px">
+      <circle cx="50" cy="50" r="50" fill="#06C755"/>
+      <path d="M50 18C32.3 18 18 30.4 18 45.6c0 9.5 5.5 17.9 13.9 23.1-.6 2.1-2.1 7.4-2.4 8.5-.4 1.4.5 1.4 1.1 1 .4-.3 6.8-4.6 9.6-6.4 1.6.2 3.2.3 4.8.3 17.7 0 32-12.4 32-27.5C79 31.5 67.7 18 50 18z" fill="white"/>
+      <text x="50" y="53" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#06C755" letter-spacing="1.5">LINE</text>
+    </svg>
+  </a>
+  <button class="fb fb-wechat" onclick="copyFloatWC()" title="複製WeChat ID">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:50px">
+      <circle cx="50" cy="50" r="50" fill="#2DC100"/>
+      <ellipse cx="41" cy="43" rx="22" ry="17" fill="white"/>
+      <circle cx="32" cy="43" r="3.5" fill="#2DC100"/>
+      <circle cx="41" cy="43" r="3.5" fill="#2DC100"/>
+      <circle cx="50" cy="43" r="3.5" fill="#2DC100"/>
+      <ellipse cx="60" cy="60" rx="18" ry="14" fill="white"/>
+      <circle cx="52" cy="60" r="3" fill="#2DC100"/>
+      <circle cx="60" cy="60" r="3" fill="#2DC100"/>
+      <circle cx="68" cy="60" r="3" fill="#2DC100"/>
+    </svg>
+  </button>
+</div>
+<div id="float-toast">✓ ID 已複製</div>
+
+<script>
+const PAGES=['home','about','terms','pricing','recruit'];
+
+function cfHTML(pid){
+  return `<div class="cf">
+    <div class="cf-title">CONTACT · 即刻聯繫專屬顧問</div>
+    <div class="cf-cards">
+
+      <!-- 電話 -->
+      <div class="cf-card">
+        <svg class="cf-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="rgba(201,149,108,0.12)"/>
+          <path d="M64 60.8v6a4.2 4.2 0 0 1-4.57 4.2 41.6 41.6 0 0 1-18.1-6.44A40.95 40.95 0 0 1 29 52a41.6 41.6 0 0 1-6.44-18.18A4.2 4.2 0 0 1 26.73 29h6a4.2 4.2 0 0 1 4.2 3.6c.27 2.02.75 4.01 1.47 5.91a4.2 4.2 0 0 1-.94 4.43l-2.67 2.67a33.6 33.6 0 0 0 12.6 12.6l2.67-2.67a4.2 4.2 0 0 1 4.43-.94c1.9.72 3.89 1.2 5.91 1.47A4.2 4.2 0 0 1 64 60.8z" fill="#C9956C"/>
+        </svg>
+        <div class="cf-l">
+          <div class="cf-type">PHONE</div>
+          <div class="cf-id">0986-199-030</div>
+        </div>
+        <a href="tel:+886986199030" class="cf-cbtn">直接撥打</a>
+      </div>
+
+      <!-- LINE -->
+      <div class="cf-card">
+        <svg class="cf-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#06C755"/>
+          <path d="M50 18C32.3 18 18 30.4 18 45.6c0 9.5 5.5 17.9 13.9 23.1-.6 2.1-2.1 7.4-2.4 8.5-.4 1.4.5 1.4 1.1 1 .4-.3 6.8-4.6 9.6-6.4 1.6.2 3.2.3 4.8.3 17.7 0 32-12.4 32-27.5C79 31.5 67.7 18 50 18z" fill="white"/>
+          <text x="50" y="53" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="19" fill="#06C755" letter-spacing="1.5">LINE</text>
+        </svg>
+        <div class="cf-l">
+          <div class="cf-type">LINE ID</div>
+          <div class="cf-id">charlotte_kelsen</div>
+        </div>
+        <a href="https://line.me/ti/p/~charlotte_kelsen" target="_blank" class="cf-cbtn">一鍵加入</a>
+      </div>
+
+      <!-- WeChat -->
+      <div class="cf-card">
+        <svg class="cf-ico" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="50" fill="#2DC100"/>
+          <ellipse cx="41" cy="43" rx="22" ry="17" fill="white"/>
+          <circle cx="32" cy="43" r="3.5" fill="#2DC100"/>
+          <circle cx="41" cy="43" r="3.5" fill="#2DC100"/>
+          <circle cx="50" cy="43" r="3.5" fill="#2DC100"/>
+          <ellipse cx="60" cy="60" rx="18" ry="14" fill="white"/>
+          <circle cx="52" cy="60" r="3" fill="#2DC100"/>
+          <circle cx="60" cy="60" r="3" fill="#2DC100"/>
+          <circle cx="68" cy="60" r="3" fill="#2DC100"/>
+        </svg>
+        <div class="cf-l">
+          <div class="cf-type">WECHAT ID</div>
+          <div class="cf-id">Charlotte_Kelsen</div>
+          <div class="copy-msg" id="cm-${pid}">✓ 已複製</div>
+        </div>
+        <button class="cf-cbtn" onclick="copyWC('${pid}')">一鍵複製</button>
+      </div>
+
+    </div>
+    <div class="footer-copy">© 2025 Charlotte Men's Agency · 夏洛特男傳經紀公司</div>
+  </div>`;
+}
+
+function copyWC(pid){
+  navigator.clipboard.writeText('Charlotte_Kelsen').then(()=>{
+    const el=document.getElementById('cm-'+pid);
+    el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'),2400);
+  });
+}
+function copyFloatWC(){
+  navigator.clipboard.writeText('Charlotte_Kelsen').then(()=>{
+    const t=document.getElementById('float-toast');
+    t.style.opacity='1';
+    setTimeout(()=>t.style.opacity='0',2000);
+  });
+}
+
+PAGES.forEach(p=>{
+  const el=document.getElementById('cf-'+p);
+  if(el)el.innerHTML=cfHTML(p);
+});
+
+function nav(pid){
+  closeMenu();
+  PAGES.forEach(p=>document.getElementById('p-'+p).classList.toggle('active',p===pid));
+  setTimeout(()=>{
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+  },50);
+  setTimeout(initReveal,130);
+}
+function toggleMenu(){
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mmenu').classList.toggle('open');
+  document.body.style.overflow=document.getElementById('mmenu').classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('mmenu').classList.remove('open');
+  document.body.style.overflow='';
+}
+window.addEventListener('scroll',()=>{
+  document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>50);
+  const btn=document.getElementById('back-top');
+  if(btn){
+    if(window.scrollY>200)btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+});
+function initReveal(){
+  const els=document.querySelectorAll('.page.active .reveal:not(.vis)');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+  },{threshold:.08});
+  els.forEach(el=>obs.observe(el));
+}
+function scrollToFooter(pid){
+  const cf=document.getElementById('cf-'+pid);
+  if(cf)cf.scrollIntoView({behavior:'smooth'});
+}
+function scrollBackTop(){
+  window.scrollTo({top:0,left:0,behavior:'smooth'});
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
+}
+setTimeout(initReveal,200);
+// 年齡確認
+(function(){
+  if(sessionStorage.getItem('ageOK')){
+    document.getElementById('age-gate').style.display='none';
+  }
+})();
+function ageConfirm(){
+  sessionStorage.setItem('ageOK','1');
+  document.getElementById('age-gate').style.display='none';
+}
+function ageDeny(){
+  window.location.href='https://www.google.com';
+}
+</script>
+<a id="side-btn" href="https://kelsen-199030.github.io/charlotte/" target="_blank" rel="noopener noreferrer">
+  <span class="side-dot"></span>
+  女傳　飯局　酒店部門
+  <span class="side-dot"></span>
+</a>
+</body>
+</html>
